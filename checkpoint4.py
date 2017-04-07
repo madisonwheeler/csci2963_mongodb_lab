@@ -29,3 +29,5 @@ print doc
 print "\nInsert"
 post_id = defs.insert_one({"word": "Flugelhorn", "definition": "instrument"})
 print post_id
+
+print defs.find_one({"word": "Flugelhorn", "definition": "instrument"})
