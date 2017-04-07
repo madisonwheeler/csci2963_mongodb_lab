@@ -1,14 +1,24 @@
 from pymongo import MongoClient
+import pymongo
+from random import randint
+import datetime
 client = MongoClient()
 
 
-def random_word_requester():
-    '''
-    This function should return a random word and its definition and also
-    log in the MongoDB database the timestamp that it was accessed.
-    '''
-    return
+db = client.csci2963
+defs = db.definitions
+	
+n = defs.count()
+r = randint(0,n)
+#r = 8
 
-
-if __name__ == '__main__':
-    print random_word_requester()
+i = 0
+w = ""
+for word in defs.find():
+    if i == r:
+        w = word["word"]
+        t = str(datetime.datetime.now())        
+        defs.update({"word":w}, {"$push": {"dates": t}})
+        break
+    i+=1
+print defs.find_one({"word":w})
