@@ -9,8 +9,8 @@ db = client.csci2963
 defs = db.definitions
 	
 n = defs.count()
-r = randint(0,n)
-#r = 8
+#r = randint(0,n)
+r = 8
 
 i = 0
 w = ""
